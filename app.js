@@ -19,6 +19,8 @@ const uploadRoute = require("./routes/uploads");
 const messageRoute = require("./routes/message");
 const hallTicketRoute = require("./routes/hallTicket");
 const resultRoute = require("./routes/result");
+const configurationRoute = require("./routes/configurationRoute");
+const academicYearRoute = require("./routes/academicYearRoute");
 
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
@@ -69,6 +71,8 @@ app.use("/api/messages", messageRoute);
 app.use("/api/hall-ticket", hallTicketRoute);
 app.use("/api/result", resultRoute);
 app.use("/api/trash", trashRoute);
+app.use("/api/configurations", configurationRoute);
+app.use("/api/academic-year", academicYearRoute);
 
 process.env.PWD = process.cwd();
 app.use(express.static(path.join(process.env.PWD, "public")));

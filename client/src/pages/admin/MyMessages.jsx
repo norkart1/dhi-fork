@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useState, useEffect } from "react";
 import Axios from "../../Axios";
-import { UserAuthContext } from "../../context/user";
+import { UserAuthContext } from "../../context/userContext";
 
 function MyMessages() {
   const [messages, setMessages] = useState([]);

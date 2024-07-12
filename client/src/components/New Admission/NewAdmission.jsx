@@ -5,8 +5,11 @@ import Axios from "../../Axios";
 import SelectedBranch from "./SelectedBranch";
 import StudentDetails from "./StudentDetails";
 import VerifyDetails from "./VerifyDetails";
+import { getConfigurations } from "../../context/configurationPage";
 
 function NewAdmission() {
+  const [configurations, setConfigurations] = useState({ newAdmission: true });
+
   const initialState = {
     studentName: "",
     fatherName: "",
@@ -47,7 +50,6 @@ function NewAdmission() {
       errors.dobDate = "DOB is required";
     }
 
-    
     if (!values.district) {
       errors.district = "District is required";
     }
@@ -118,10 +120,22 @@ function NewAdmission() {
   };
 
   useEffect(() => {
+    getConfigurations().then((data) => {
+      setConfigurations(data);
+    });
+
     if (Object.keys(formErrors).length === 0 && goNext) {
       setPage(page + 1);
     }
   }, [formErrors]);
+
+  if (!configurations?.newAdmission) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen bg-red-100">
+        <h1 className="text-4xl font-bold text-red-600">Admission closed</h1>
+      </div>
+    );
+  }
 
   switch (page) {
     case 1:

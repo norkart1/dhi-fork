@@ -1,22 +1,32 @@
+const AcademicYear = require("../models/academicYearModel");
 const Student = require("../models/studentModel");
 const globalFunctions = require("../utils/globalFuctions");
 const mongoose = require("mongoose");
 const xlsx = require("xlsx");
 
-exports.getStudent = globalFunctions.getOne(Student, "branch", "class");
+exports.getStudent = globalFunctions.getOne(
+  Student,
+  "branch",
+  "class",
+  "academicYear"
+);
 
 exports.getAllStudents = async (req, res, next) => {
   try {
-    let data=await Student.find({class:req.query.classId,branch:req.query.studyCentre}).populate('branch').populate('class')
-    res.status(200).json(data)
-  } catch (error) {
-    
-  }
+    let data = await Student.find({
+      class: req.query.classId,
+      branch: req.query.studyCentre,
+    })
+      .populate("branch")
+      .populate("class");
+    res.status(200).json(data);
+  } catch (error) {}
 };
 exports.getAdmissions = globalFunctions.getAll(Student, "branch", "class");
 exports.registerStudent = async (req, res, next) => {
   try {
-    let data = await Student.create(req.body);
+    let academicYear = await AcademicYear.findOne({ currentYear: true })._id;
+    let data = await Student.create({ ...req.body, academicYear });
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
@@ -25,7 +35,13 @@ exports.registerStudent = async (req, res, next) => {
 };
 exports.addStudent = async (req, res, next) => {
   try {
-    let data = await Student.create({ ...req.body, verified: true });
+    let academicYear = await AcademicYear.findOne({ currentYear: true });
+
+    let data = await Student.create({
+      ...req.body,
+      academicYear: academicYear._id,
+      verified: true,
+    });
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
@@ -42,6 +58,7 @@ exports.getMyStudents = async (req, res, next) => {
         $match: {
           branch: req.user.branch,
           verified: true,
+          deleted: false,
           class: mongoose.Types.ObjectId(req.params.classId),
         },
       },
@@ -70,6 +87,7 @@ exports.getBranchStudents = async (req, res, next) => {
           branch: mongoose.Types.ObjectId(req.params.studyCentreId),
           class: mongoose.Types.ObjectId(req.params.classId),
           verified: true,
+          deleted: false,
         },
       },
     ]);
@@ -83,6 +101,7 @@ exports.getMyAdmissions = async (req, res, next) => {
   try {
     let data = await Student.find({ branch: req.user.branch, verified: false })
       .populate("class", "className")
+      .populate("academicYear")
       .sort({ createdAt: 1 });
     res.status(200).json(data);
   } catch (error) {
@@ -129,10 +148,14 @@ exports.getAdmissionRequests = async (req, res, next) => {
 exports.deleteStudent = globalFunctions.deleteOne(Student);
 exports.excelUpload = async (req, res) => {
   try {
-    // Read uploaded file
+    let academicYear = await AcademicYear.findOne({ currentYear: true });
+
     const workbook = xlsx.read(req.file.buffer, { type: "buffer" });
     const sheet = workbook.Sheets[workbook.SheetNames[0]];
     const jsonData = xlsx.utils.sheet_to_json(sheet);
+    console.log("====================================");
+    console.log(jsonData[2]);
+    console.log("====================================");
     if (jsonData.length === 0) {
       res.status(400).json({ message: "Please add data" });
     } else {
@@ -143,6 +166,9 @@ exports.excelUpload = async (req, res) => {
             class: req.body.class,
             branch: req.user.branch,
             verified: true,
+            deleted: false,
+            academicYear: academicYear._id,
+            dateOfBirth: `${data.dobDate}-${data.dobMonth}-${data.dobYear}`,
           });
           await student.save();
         })

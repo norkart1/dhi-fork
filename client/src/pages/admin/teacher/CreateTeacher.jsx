@@ -4,7 +4,7 @@ import Axios from "../../../Axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { UserAuthContext } from "../../../context/user";
+import { UserAuthContext } from "../../../context/userContext";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";

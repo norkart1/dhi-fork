@@ -6,7 +6,7 @@ const studyCentreSchema = new mongoose.Schema({
   studyCentreName: {
     type: String,
     uppercase: true,
-    required: [true, "Branch Name is required"],
+    required: [true, "Study Centre Name is required"],
     maxLength: [100, "100 characters are allowed"],
   },
   phone: {
@@ -18,7 +18,7 @@ const studyCentreSchema = new mongoose.Schema({
   studyCentreCode: {
     type: String,
     uppercase: true,
-    required: [true, "Branch code is required"],
+    required: [true, "Study Centre code is required"],
     maxLength: [35, "35 characters are allowed"],
   },
   district: {
@@ -32,6 +32,18 @@ const studyCentreSchema = new mongoose.Schema({
     uppercase: true,
     // required: [true, "State is required"],
     maxLength: [30, "30 characters are allowed"],
+  },
+  panchayath: {
+    type: String,
+    uppercase: true,
+  },
+  affiliatedYear: {
+    type: String,
+    uppercase: true,
+  },
+  email: {
+    type: String,
+    uppercase: true,
   },
   postOffice: {
     type: String,
@@ -76,6 +88,6 @@ studyCentreSchema.pre("save", function (next) {
 
 studyCentreSchema.pre("findByIdAndDelete", preRemoveMiddleware);
 
-const StudyCentre = mongoose.model("Branch", studyCentreSchema, "studycentres");
+const StudyCentre = mongoose.model("Branch", studyCentreSchema,'studycentres');
 
 module.exports = StudyCentre;

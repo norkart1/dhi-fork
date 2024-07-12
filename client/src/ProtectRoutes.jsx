@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useContext } from "react";
-import { UserAuthContext } from "./context/user";
+import { UserAuthContext } from "./context/userContext";
 import { useNavigate,Outlet } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 

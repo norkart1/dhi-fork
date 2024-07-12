@@ -58,11 +58,16 @@ const studentSchema = new mongoose.Schema(
     dateOfBirth: {
       type: String,
       required: [true, "DOB year is required"],
-      maxLength: [15, "15 characters are allowed"],
+      maxLength: [45, "15 characters are allowed"],
     },
     phone: {
       type: String,
       maxLength: [15, "15 characters are allowed"],
+    },
+    academicYear: {
+      type: mongoose.Types.ObjectId,
+      ref:"AcademicYear",
+      required:true,
     },
     branch: {
       type: mongoose.Types.ObjectId,
@@ -72,18 +77,18 @@ const studentSchema = new mongoose.Schema(
     },
     verified: {
       type: Boolean,
-      default:false
+      default: false,
     },
     class: {
       type: mongoose.Types.ObjectId,
       required: [true, "Please select a class"],
       ref: "Class",
-    },  deleted: { type: Boolean, default: false }
-
+    },
+    deleted: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
-studentSchema.pre(/^find/, function(next) {
+studentSchema.pre(/^find/, function (next) {
   // Only include documents where the deleted field is not true
   this.find({ deleted: { $ne: true } });
   next();

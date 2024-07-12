@@ -4,14 +4,17 @@ const Auth = require("../models/authModel");
 const catchAsync = require("../utils/catchAsync");
 const StudyCentre = require("../models/studyCentreModel");
 
-
-exports.createBranch = catchAsync(async (req, res, next) => {
-  let data = await StudyCentre.create(req.body);
-  let user = await Auth.create({ ...req.body, branch: data._id });
-  data.admin = user._id;
-  data.save();
-  res.status(200).json(data);
-});
+exports.createBranch = async (req, res, next) => {
+  try {
+    let data = await StudyCentre.create(req.body);
+    let user = await Auth.create({ ...req.body, branch: data._id });
+    data.admin = user._id;
+    data.save();
+    res.status(200).json(data);
+  } catch (error) {
+    next(error);
+  }
+};
 
 exports.editBranch = async (req, res, next) => {
   let studyCentreId;

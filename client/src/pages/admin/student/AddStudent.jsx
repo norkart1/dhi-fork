@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Axios from "../../../Axios";
-import { UserAuthContext } from "../../../context/user";
+import { UserAuthContext } from "../../../context/userContext";
 import { toast } from "react-toastify";
 
 const AddStudent = () => {

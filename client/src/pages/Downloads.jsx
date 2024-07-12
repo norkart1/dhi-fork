@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Axios from "../Axios";
-import { UserAuthContext } from "../context/user";
+import { UserAuthContext } from "../context/userContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 

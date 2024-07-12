@@ -24,8 +24,8 @@ function EditResult() {
   };
   const getAllBranches = async () => {
     try {
-      const response = await Axios.get("/study-centre?sort=studyCentreName");
-      // console.log(response.data);
+      const response = await Axios.get("/study-centre?sort=branchName");
+     
       setBranches(response.data.docs);
     } catch (error) {
       console.error(error);
@@ -42,6 +42,9 @@ function EditResult() {
   const getAllSubjects = async () => {
     try {
       const response = await Axios.get("/subject");
+      console.log('====================================');
+      console.log(response.data);
+      console.log('====================================');
       setSubjects(response.data);
     } catch (error) {
       console.error(error);
@@ -69,10 +72,8 @@ function EditResult() {
     });
   };
 
- 
   const handleSubmit = async () => {
     try {
-     
       const response = await Axios.patch(
         `/result?examId=${exam}&subjectId=${subject}&classId=${selectedClass}`,
         updatedData

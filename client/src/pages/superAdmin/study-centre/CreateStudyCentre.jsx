@@ -16,6 +16,9 @@ function CreateStudyCentre() {
     password: "",
     username: "",
     studyCentreCode: "",
+    panchayath: "",
+    affiliatedYear: "",
+    email: "",
   };
   const [inputData, setInputData] = useState(initialState);
   const [loading, setLoading] = useState(false);
@@ -34,7 +37,7 @@ function CreateStudyCentre() {
       if (res.data) {
         setLoading(false);
         setInputData(initialState);
-        toast.success("Branch Added Successfully", {
+        toast.success("Study Centre Added Successfully", {
           autoClose: 2000,
           position: toast.POSITION.TOP_CENTER,
         });
@@ -121,7 +124,82 @@ function CreateStudyCentre() {
                   className="block  text-sm font-bold mb-2"
                   htmlFor="username"
                 >
-                  Phone Number 1
+                  Panchayath
+                  {errors.panchayath && (
+                    <h1 className="text-red-500 font-sm text-center">
+                      {errors.panchayath}
+                    </h1>
+                  )}
+                </label>
+                <input
+                  className="block p-4 pl-10 w-full text-sm text-blue-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  id="username"
+                  type="text"
+                  required
+                  value={inputData.panchayath}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Panchayath"
+                  name="panchayath"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-1">
+              <div className="px-4 sm:px-0">
+                <label
+                  className="block  text-sm font-bold mb-2"
+                  htmlFor="username"
+                >
+                  Affiliated Year
+                  {errors.affiliatedYear && (
+                    <h1 className="text-red-500 font-sm text-center">
+                      {errors.affiliatedYear}
+                    </h1>
+                  )}
+                </label>
+                <input
+                  className="block p-4 pl-10 w-full text-sm text-blue-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  id="username"
+                  type="text"
+                  required
+                  value={inputData.affiliatedYear}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Affiliated Year"
+                  name="affiliatedYear"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-1">
+              <div className="px-4 sm:px-0">
+                <label
+                  className="block  text-sm font-bold mb-2"
+                  htmlFor="username"
+                >
+                 Email
+                  {errors.email && (
+                    <h1 className="text-red-500 font-sm text-center">
+                      {errors.email}
+                    </h1>
+                  )}
+                </label>
+                <input
+                  className="block p-4 pl-10 w-full text-sm text-blue-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  id="username"
+                  type="text"
+                  required
+                  value={inputData.email}
+                  onChange={(e) => onChange(e)}
+                  placeholder="Email"
+                  name="email"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-1">
+              <div className="px-4 sm:px-0">
+                <label
+                  className="block  text-sm font-bold mb-2"
+                  htmlFor="username"
+                >
+                  Phone Number 
                   {errors.phone && (
                     <h1 className="text-red-500 font-sm text-center">
                       {errors.phone}

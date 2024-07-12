@@ -5,6 +5,7 @@ import FileUpload from "./pages/admin/FileUpload";
 import MyMessages from "./pages/admin/MyMessages";
 import MyUploads from "./pages/admin/MyUploads";
 import Admissions from "./pages/admin/admission/Admissions";
+import StudyCentreProfile from "./pages/admin/study-centre/StudyCentreProfile";
 import AdmissionRequests from "./pages/superAdmin/AdmissionRequests";
 import AllSubjects from "./pages/superAdmin/AllSubjects";
 import ClassManagment from "./pages/superAdmin/ClassManagment";
@@ -13,6 +14,7 @@ import CreateMessage from "./pages/superAdmin/CreateMessage";
 import EditSubject from "./pages/superAdmin/EditSubject";
 import RecycleBin from "./pages/superAdmin/RecycleBin";
 import UploadedFiles from "./pages/superAdmin/UploadedFiles";
+import Configurations from "./pages/superAdmin/configurations/Configurations";
 import CourseHome from "./pages/superAdmin/course/CourseHome";
 import CourseTable from "./pages/superAdmin/course/CourseTable";
 import CreateNotification from "./pages/superAdmin/notification/CreateNotification";
@@ -35,7 +37,7 @@ export const SuperAdminRoutes = [
   },
   {
     route: "/edit-branch/:id",
-    component: <StudyCentre.EditBranch />,
+    component: <StudyCentre.EditStudyCentre />,
     role: "superAdmin",
   },
 
@@ -146,6 +148,11 @@ export const SuperAdminRoutes = [
     component: <StudyCentre.StudyCentreView />,
     role: "superAdmin",
   },
+  {
+    route: "/configurations",
+    component: <Configurations />,
+    role: "superAdmin",
+  },
 ];
 
 export const AdminRoutes = [
@@ -206,5 +213,9 @@ export const AdminRoutes = [
   {
     route: "/result-view/",
     component: <Result.ResultView />,
+  },
+  {
+    route: "/study-centre-profile/",
+    component: <StudyCentreProfile />,
   },
 ];

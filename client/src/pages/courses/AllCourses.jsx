@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "../../Axios";
-import { UserAuthContext } from "../../context/user";
+import { UserAuthContext } from "../../context/userContext";
 
 function AllCourses() {
   const navigate = useNavigate();

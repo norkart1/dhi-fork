@@ -60,12 +60,14 @@ function AllStudents() {
   if (students.length < 0) {
     return <Loading />;
   }
-
+  const isEmptyCell = (cell) => {
+    return typeof cell === "string" && cell.trim() === "";
+  };
   return (
     <>
       <div className="flex flex-col ml-6">
         <h3 className="text-4xl text-center font-bold text-green-900 uppercase my-4">
-          {className?.className} 
+          {className?.className}
         </h3>
 
         <div className="mx-auto ">
@@ -73,7 +75,10 @@ function AllStudents() {
           <div className="overflow-x-auto sm:-mx-6 lg:mx-auto">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
               {!showModal ? (
-                <StudentsTable setShowModal={setShowModal}students={students} />
+                <StudentsTable
+                  setShowModal={setShowModal}
+                  students={students}
+                />
               ) : (
                 <>
                   {
@@ -105,21 +110,12 @@ function AllStudents() {
                         {rows.length > 0 && (
                           <div className="overflow-x-auto">
                             <table className="table-auto border-collapse border border-gray-800 mx-auto my-5">
-                              <thead>
-                                <tr className="bg-gray-800 text-white">
-                                  {cols.map((col, index) => (
-                                    <th key={index} className="px-4 py-2">
-                                      {col.name}
-                                    </th>
-                                  ))}
-                                </tr>
-                              </thead>
                               <tbody>
                                 {rows.map((row, rowIndex) => (
                                   <tr
                                     key={rowIndex}
                                     className={
-                                      row.some((cell) => cell.trim() === "")
+                                      row.some((cell) => isEmptyCell(cell))
                                         ? "text-red-500"
                                         : ""
                                     }
@@ -145,14 +141,14 @@ function AllStudents() {
                         )}
                         <button
                           onClick={(e) => handleExcelUpload(e)}
-                          className="bg-green-400 text-white float-right font-bold px-3 py-2 mt-3"
+                          className="bg-green-400 mr-2 text-white  font-bold px-3 py-2 mt-3"
                         >
                           Upload{" "}
                         </button>
 
                         <button
                           onClick={(e) => setShowModal(!showModal)}
-                          className="bg-red-600 mr-3 text-white float-right font-bold px-3 py-2 mt-3"
+                          className="bg-red-600 mr-3 text-white  font-bold px-3 py-2 mt-3"
                         >
                           close
                         </button>
@@ -169,19 +165,19 @@ function AllStudents() {
   );
 }
 
-function StudentsTable({ setShowModal,students }) {
+function StudentsTable({ setShowModal, students }) {
   return (
     <div className="sm:-mx-6 lg:-mx-8 w-full">
       <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          { (
+          {
             <button
               onClick={(e) => setShowModal(true)}
               className="bg-green-500 px-3 py-2 w-full font-bold text-white hover:bg-green-600 rounded-md"
             >
               Add Students
             </button>
-          )}
+          }
         </div>
         <div className="flex flex-col mt-4 space-y-2">
           <table className="bg-gray-200 w-full border-collapse">

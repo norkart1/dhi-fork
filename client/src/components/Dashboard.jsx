@@ -3,14 +3,21 @@ import {
   faBookOpenReader,
   faChalkboardUser,
   faCheckDouble,
-  faCheckToSlot, faDownload,
-  faGraduationCap, faMarker, faSchool, faToolbox, faUpload
+  faCheckToSlot,
+  faDownload,
+  faGraduationCap,
+  faMarker,
+  faSchool,
+  faToolbox,
+  faTools,
+  faUpload,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "../Axios";
-import { UserAuthContext } from "../context/user";
+import { UserAuthContext } from "../context/userContext";
 
 function Dashboard() {
   const { authData } = useContext(UserAuthContext);
@@ -53,7 +60,7 @@ function Dashboard() {
       icon: faBookOpenReader,
       link: "/all-subjects",
     },
-  
+
     {
       text: "ADMISSION REQUESTS",
       icon: faBook,
@@ -84,7 +91,11 @@ function Dashboard() {
       icon: faMarker,
       link: "/result-section",
     },
-    
+    {
+      text: "Configurations",
+      icon: faTools,
+      link: "/configurations",
+    },
   ];
   const AdminItems = [
     {
@@ -112,6 +123,11 @@ function Dashboard() {
       icon: faCheckDouble,
       link: "/result-view",
     },
+    {
+      text: "Profile",
+      icon: faUser,
+      link: "/study-centre-profile/",
+    },
   ];
 
   useEffect(() => {
@@ -124,7 +140,6 @@ function Dashboard() {
         <>
           {authData?.role === "admin" && (
             <div className="lg:flex">
-          
               <div className="bg-gray-900 w-full items-center">
                 <h1 className="text-white lg:my-[80px]  text-center font-bold text-3xl">
                   {branch?.studyCentreName}
@@ -137,7 +152,11 @@ function Dashboard() {
             <>
               <div className="px-4 py-8 m-auto mt-5 grid grid-cols-1 lg:grid-cols-4">
                 {SuperAdminItems.map((item, key) => (
-                  <Link to={item.link} key={key} className="w-full p-2 cursor-pointer">
+                  <Link
+                    to={item.link}
+                    key={key}
+                    className="w-full p-2 cursor-pointer"
+                  >
                     <div className=" py-4 overflow-hidden  cursor-pointer bg-gray-800 rounded-xl group  duration-300 shadow-2xl group">
                       <div className="flex">
                         <div className="px-4 py-4 bg-gray-300 group-hover:bg-gray-900 rounded-xl bg-opacity-30 mx-auto text-2xl">
@@ -154,7 +173,6 @@ function Dashboard() {
                   </Link>
                 ))}
               </div>
-         
             </>
           ) : (
             <div className="w-full items-center px-4 py-8 mt-5 grid grid-cols-1 lg:grid-cols-3">

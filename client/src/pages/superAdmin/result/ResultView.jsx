@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Axios from "../../../Axios";
-import { UserAuthContext } from "../../../context/user";
+import { UserAuthContext } from "../../../context/userContext";
 
 function ResultView() {
   const [classes, setClasses] = useState([]);

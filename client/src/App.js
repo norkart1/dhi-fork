@@ -7,7 +7,7 @@ import "react-quill/dist/quill.bubble.css";
 import { AdminRoutes, SuperAdminRoutes } from "./Routes";
 import StickyNavbar from "./components/Navbar";
 import AdmissionCreated from "./components/New Admission/AdmissionCreated";
-import { UserAuthContext } from "./context/user";
+import { UserAuthContext } from "./context/userContext";
 import { Auth, Student } from "./pages";
 import About from "./pages/About";
 import AdmissionStarted from "./pages/AdmissionStarted";

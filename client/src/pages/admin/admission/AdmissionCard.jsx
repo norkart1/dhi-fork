@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Axios from "../../../Axios";
-import { UserAuthContext } from "../../../context/user";
+import { UserAuthContext } from "../../../context/userContext";
 
 function AdmissionCard({ id, admClass }) {
   const [students, setStudents] = useState([]);

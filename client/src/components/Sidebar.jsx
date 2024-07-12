@@ -16,7 +16,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { UserAuthContext } from "./../context/user";
+import { UserAuthContext } from "./../context/userContext";
 
 function Sidebar() {
   const { authData, logout } = useContext(UserAuthContext);

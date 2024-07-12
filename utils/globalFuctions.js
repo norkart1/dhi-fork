@@ -32,11 +32,12 @@ exports.getAll =
   };
 
 exports.getOne =
-  (Model, populateOption1, populateOption2) => async (req, res) => {
+  (Model, populateOption1, populateOption2,populateOption3) => async (req, res) => {
     try {
       let data = await Model.findById(req.params.id)
         .populate(populateOption1)
-        .populate(populateOption2);
+        .populate(populateOption2)
+        .populate(populateOption3)
       res.status(200).json(data);
     } catch (error) {
       res.status(400).json(error);

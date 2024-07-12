@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { UserAuthContext } from "../../../context/user";
+import { UserAuthContext } from "../../../context/userContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSchoolCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
