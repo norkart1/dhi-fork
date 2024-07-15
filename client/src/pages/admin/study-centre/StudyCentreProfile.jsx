@@ -20,6 +20,8 @@ function StudyCentreProfile() {
     panchayath: "",
     affiliatedYear: "",
     email: "",
+    currentPrincipal: "",
+    principalContactNumber: "",
   };
   const [inputData, setInputData] = useState(initialState);
   const [loading, setLoading] = useState(false);
@@ -327,6 +329,38 @@ function StudyCentreProfile() {
               </div>
             </div>
 
+            <div className="lg:col-span-1">
+              <div className="px-4 sm:px-0">
+                <label className="block   font-bold mb-2" htmlFor="username">
+                  Principal's Name 
+                </label>
+                <input
+                  className="block p-4 pl-10 w-full  text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
+                  type="text"
+                  value={inputData.currentPrincipal}
+                  required
+                  onChange={(e) => onChange(e)}
+                  placeholder="Principal's Name "
+                  name="currentPrincipal"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-1">
+              <div className="px-4 sm:px-0">
+                <label className="block   font-bold mb-2" htmlFor="username">
+                  Principal Contact Number 
+                </label>
+                <input
+                  className="block p-4 pl-10 w-full  text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
+                  type="tel"
+                  value={inputData.principalContactNumber}
+                  required
+                  onChange={(e) => onChange(e)}
+                  placeholder="Principal Contact Number "
+                  name="principalContactNumber"
+                />
+              </div>
+            </div>
             <div className="lg:col-span-1">
               <div className="px-4 sm:px-0">
                 <label className="block   font-bold mb-2" htmlFor="username">

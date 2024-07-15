@@ -71,6 +71,8 @@ const studyCentreSchema = new mongoose.Schema({
   images: [String],
   admin: { type: mongoose.Types.ObjectId },
   deleted: { type: Boolean, default: false },
+  currentPrincipal: { type: String },
+  principalContactNumber: { type: String },
 });
 
 studyCentreSchema.pre(/^find/, function (next) {
@@ -88,6 +90,6 @@ studyCentreSchema.pre("save", function (next) {
 
 studyCentreSchema.pre("findByIdAndDelete", preRemoveMiddleware);
 
-const StudyCentre = mongoose.model("Branch", studyCentreSchema,'studycentres');
+const StudyCentre = mongoose.model("Branch", studyCentreSchema, "studycentres");
 
 module.exports = StudyCentre;
